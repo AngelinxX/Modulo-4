@@ -19,7 +19,7 @@ export const ContactsList = () => {
         setContactsList(contacts);
     }
     return <View>
-        <Text>LISTA DE CONTACTOS</Text>
+        <Text>LISTA DE LAPTOPS</Text>
         <Button
             title="Consultar"
             onPress={() => {

@@ -8,7 +8,7 @@ export default function App() {
     <NavigationContainer>
       <Stackcontacts.Navigator>
         <Stackcontacts.Screen
-          name="ContactListNav"
+          name="Lista Laptops"
           component={ContactsList}
         />
       </Stackcontacts.Navigator>
