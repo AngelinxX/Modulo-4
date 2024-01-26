@@ -14,3 +14,25 @@ export const getAllLaptops=(fnRefreshList)=>{
         }
     )
 }
+export const saveInfoRest=(contact,fnShowMessage)=>{
+    const config={
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            Marca:contact.Marcas,
+            Color:contact.Colores,
+            Codigo:contact.Codigos,
+        })
+    }
+    fetch(
+        URL+"info",config
+    )
+    .then((response)=>{return response.json()})
+    .then((body)=>{
+        fnShowMessage();
+        console.log(body);
+    })
+
+}

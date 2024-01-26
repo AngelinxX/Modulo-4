@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, FlatList } from "react-native"
-import { Button, ListItem } from "@rneui/base"
+import { Button, ListItem, FAB } from "@rneui/base"
 import { getAllLaptops } from "../rest_client/laptops"
 import { useState } from "react"
 
-export const ContactsList = () => {
+export const LaptopsList = ({navigation}) => {
     const [contactsList, setContactsList] = useState([]);
 
     const ContactItem = ({ contact }) => {
@@ -18,7 +18,7 @@ export const ContactsList = () => {
     fnRefreshList = (contacts) => {
         setContactsList(contacts);
     }
-    return <View>
+    return <View style={styles.container}>
         <Text>LISTA DE LAPTOPS</Text>
         <Button
             title="Consultar"
@@ -32,6 +32,10 @@ export const ContactsList = () => {
                 return <ContactItem contact={item} />
             }}
         />
+        <FAB
+            title="+"
+            onPress={()=>{navigation.navigate("IngresoLaptops")}}
+        />
     </View>
 }
 
@@ -39,7 +43,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'column',//principal eje vertical
+        alignItems: 'stretch',//secundario
+        justifyContent: 'flex-start',//jp
     },
 });

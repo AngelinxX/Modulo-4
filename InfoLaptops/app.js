@@ -25,3 +25,8 @@ app.get("/info",(request,response)=>{
     console.log("ingresa al get");
     response.send(contactos);
 })
+
+app.post("/info",(req,resp)=>{
+    req.body.id=99;
+    resp.send(req.body);
+});
