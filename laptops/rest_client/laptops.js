@@ -36,3 +36,27 @@ export const saveInfoRest=(contact,fnShowMessage)=>{
     })
 
 }
+
+export const updateInfoRest=(contact,fnShowMessage)=>{
+    const config={
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            id:contact.id,
+            Marca:contact.Marcas,
+            Color:contact.Colores,
+            Codigo:contact.Codigos,
+        })
+    }
+    fetch(
+        URL+"info/"+contact.id,config
+    )
+    .then((response)=>{return response.json()})
+    .then((body)=>{
+        fnShowMessage();
+        console.log(body);
+    })
+
+}

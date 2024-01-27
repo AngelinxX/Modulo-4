@@ -30,3 +30,9 @@ app.post("/info",(req,resp)=>{
     req.body.id=99;
     resp.send(req.body);
 });
+
+app.put("/info/:idParam",(req,resp)=>{
+    const id=req.params.idParam;
+    console.log("id",id);
+    resp.send(req.body);
+});
