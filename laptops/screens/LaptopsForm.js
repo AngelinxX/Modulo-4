@@ -3,6 +3,7 @@ import { Input, Button } from "@rneui/base";
 import { useState } from "react";
 import { saveInfoRest } from "../rest_client/laptops";
 import { updateInfoRest } from "../rest_client/laptops";
+import { deleteInfoRest } from "../rest_client/laptops";
 
 export const LaptopsForm = ({ navigation, route }) => {
     let laptopRetrieved = route.params.listParam
@@ -17,8 +18,8 @@ export const LaptopsForm = ({ navigation, route }) => {
     const [color, setColor] = useState(isNew ? null : laptopRetrieved.Color);
     const [codigo, setCodigo] = useState(isNew ? null : laptopRetrieved.Codigo);
 
-    const showMessage = () => {
-        Alert.alert("CONFIRMACION", isNew ? "Info laptop agregado" : "Info actualizada");
+    const showMessage = (message) => {
+        Alert.alert("CONFIRMACION", message);
         navigation.goBack();
     }
 
@@ -43,6 +44,23 @@ export const LaptopsForm = ({ navigation, route }) => {
         },
             showMessage);
     }
+
+    const confirmDelete = () => {
+        Alert.alert("Confirmacion","Esta seguro que quiere eliminar",
+        [{
+            text:"SI",
+            onPress:deleteLaptop
+        },
+        {
+            text:"CANCELAR"
+        },]);
+    }
+
+    const deleteLaptop=()=>{
+        deleteInfoRest({
+            id:laptopRetrieved.id
+        },showMessage)
+}
 
     return <View style={styles.container}>
         <Input
@@ -70,6 +88,12 @@ export const LaptopsForm = ({ navigation, route }) => {
             title="Guardar"
             onPress={isNew ? createInfo : updateList}
         />
+        {
+            isNew ? <View></View> : <Button
+                title="Eliminar"
+                onPress={confirmDelete}
+            />
+        }
     </View>
 }
 

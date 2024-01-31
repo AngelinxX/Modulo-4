@@ -36,3 +36,9 @@ app.put("/info/:idParam",(req,resp)=>{
     console.log("id",id);
     resp.send(req.body);
 });
+
+app.delete("/info/:id",(req,resp)=>{
+    const id =req.params.id;
+    console.log("id:",id);
+    resp.send({id:id});
+});

@@ -1,4 +1,4 @@
-const IP = "192.168.100.177";
+const IP = "192.168.100.5";
 const PORT = 3002;
 const URL = "http://"+IP+":"+PORT+"/";
 
@@ -31,7 +31,7 @@ export const saveInfoRest=(contact,fnShowMessage)=>{
     )
     .then((response)=>{return response.json()})
     .then((body)=>{
-        fnShowMessage();
+        fnShowMessage("Informacion Laptop Guardada");
         console.log(body);
     })
 
@@ -55,7 +55,22 @@ export const updateInfoRest=(contact,fnShowMessage)=>{
     )
     .then((response)=>{return response.json()})
     .then((body)=>{
-        fnShowMessage();
+        fnShowMessage("Informacion laptop actualizada");
+        console.log(body);
+    })
+
+}
+
+export const deleteInfoRest=(contact,fnShowMessage)=>{
+    const config={
+        method:"DELETE",
+    }
+    fetch(
+        URL+"info/"+contact.id,config
+    )
+    .then((response)=>{return response.json()})
+    .then((body)=>{
+        fnShowMessage("Informacion laptop eliminada");
         console.log(body);
     })
 
