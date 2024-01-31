@@ -1,4 +1,4 @@
-const IP = "192.168.100.177";
+const IP = "192.168.100.5";
 const PORT = 3001;
 const URL = "http://"+IP+":"+PORT+"/";
 
@@ -32,7 +32,7 @@ export const saveContactRest=(contact,fnShowMessage)=>{
     )
     .then((response)=>{return response.json()})
     .then((body)=>{
-        fnShowMessage();
+        fnShowMessage("Se ha creado el contacto");
         console.log(body);
     })
 }
@@ -55,7 +55,21 @@ export const updateContactRest=(contact,fnShowMessage)=>{
     )
     .then((response)=>{return response.json()})
     .then((body)=>{
-        fnShowMessage();
+        fnShowMessage("Contacto actualizado");
+        console.log(body);
+    })
+}
+
+export const deleteContactRest=(contact,fnShowMessage)=>{
+    const config={
+        method:"DELETE",
+    }
+    fetch(
+        URL+"contactos/"+contact.id,config
+    )
+    .then((response)=>{return response.json()})
+    .then((body)=>{
+        fnShowMessage("Se ha eliminado el contacto");
         console.log(body);
     })
 }
