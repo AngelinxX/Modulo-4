@@ -10,6 +10,7 @@ export const ContactsList = ({ navigation }) => {
         console.log("Ejecuto la funcion del use effect");
         getAllContacts(fnRefreshList);
     },[]);
+
     const ContactItem = ({ contact }) => {
         return <TouchableHighlight onPress={() => {
             navigation.navigate("ContactsFormNav", { contactParam: contact });
@@ -31,7 +32,9 @@ export const ContactsList = ({ navigation }) => {
         <FlatList
             data={contactsList}
             renderItem={({ item }) => {
-                return <ContactItem contact={item} />
+                return <ContactItem contact={item} 
+                />
+                
             }}
         />
         <FAB

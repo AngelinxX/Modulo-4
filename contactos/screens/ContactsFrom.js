@@ -4,6 +4,7 @@ import { useState } from "react";
 import { saveContactRest } from "../rest_client/contactos";
 import { updateContactRest } from "../rest_client/contactos";
 import { deleteContactRest } from "../rest_client/contactos";
+import { getAllContacts } from "../rest_client/contactos";
 
 export const ContactsForm = ({ navigation, route }) => {
     let contactRetrieved = route.params.contactParam;
@@ -20,6 +21,7 @@ export const ContactsForm = ({ navigation, route }) => {
 
     const showMessage = (message) => {
         Alert.alert("CONFIRMACION", message);
+        getAllContacts(fnRefreshList);
         navigation.goBack();
     }
 
@@ -31,8 +33,7 @@ export const ContactsForm = ({ navigation, route }) => {
                 surname: surName,
                 phonenumber: phoneNumber,
             },
-            showMessage
-        );
+            showMessage);
     }
     const updateContacts = () => {
         console.log("actualizando contactos")
